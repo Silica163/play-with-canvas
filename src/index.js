@@ -34,6 +34,10 @@ function transform(ctx,trVal){
 	ctx.restore();
 }
 
+document.getElementById("clear").onclick = function(e){
+	ctx4.clearReact(0,0,700,700);
+}
+
 eTransformInput.a.addEventListener("input",updateInputValue.bind(this,"a"));
 eTransformInput.b.addEventListener("input",updateInputValue.bind(this,"b"));
 eTransformInput.c.addEventListener("input",updateInputValue.bind(this,"c"));
