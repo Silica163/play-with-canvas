@@ -36,11 +36,11 @@ function transform(ctx,trVal){
 }
 
 eTransformInput.a.addEventListener("change",updateInputValue.bind(this,"a"));
-eTransformInput.a.addEventListener("change",updateInputValue.bind(this,"b"));
-eTransformInput.a.addEventListener("change",updateInputValue.bind(this,"c"));
-eTransformInput.a.addEventListener("change",updateInputValue.bind(this,"d"));
-eTransformInput.a.addEventListener("change",updateInputValue.bind(this,"e"));
-eTransformInput.a.addEventListener("change",updateInputValue.bind(this,"f"));
+eTransformInput.b.addEventListener("change",updateInputValue.bind(this,"b"));
+eTransformInput.c.addEventListener("change",updateInputValue.bind(this,"c"));
+eTransformInput.d.addEventListener("change",updateInputValue.bind(this,"d"));
+eTransformInput.e.addEventListener("change",updateInputValue.bind(this,"e"));
+eTransformInput.f.addEventListener("change",updateInputValue.bind(this,"f"));
 
 function genFiboNum(t){
 	var fibo = [] ,n=1,a=1,b=1,c=0;
