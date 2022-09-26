@@ -1,6 +1,46 @@
 const ctx1 = document.getElementById("c1").getContext("2d");
 const ctx2 = document.getElementById("c2").getContext("2d");
 const ctx3 = document.getElementById("c3").getContext("2d");
+const ctx4 = document.getElementById("c4").getContext("2d");
+var getById = document.getElementById;
+const eTransformInput = {
+	a:getById("#a"),
+	b:getById("#b"),
+	c:getById("#c"),
+	d:getById("#d"),
+	e:getById("#e"),
+	f:getById("#f")
+}
+const eTransformValue = {
+	a:getById("#aval"),
+	b:getById("#bval"),
+	c:getById("#cval"),
+	d:getById("#dval"),
+	e:getById("#eval"),
+	f:getById("#fval")
+}
+var transformValue = [0,0,0,0,0,0],varId = "abcdef";
+function updateInputValue(el = "a",e = new Event("input")){
+	eTransformValue[el].innerHTML = e.target.value;
+	transformValue[varId.indexOf(el)] = e.target.value;
+	transform(ctx4,transformValue);
+}
+
+function transform(ctx,trVal){
+	ctx.save();
+	ctx.fillStyle = "#0008";
+	ctx.translate(ctx.canvas.width/2,ctx.canvas.height/2);
+	ctx.transform(trVal[0],trVal[1],trVal[2],trVal[3],trVal[4],trVal[5]);
+	ctx.fillRect(0,0,50,50);
+	ctx.restore();
+}
+
+eTransformInput.a.addEventListener("change",updateInputValue.bind(this,"a"));
+eTransformInput.a.addEventListener("change",updateInputValue.bind(this,"b"));
+eTransformInput.a.addEventListener("change",updateInputValue.bind(this,"c"));
+eTransformInput.a.addEventListener("change",updateInputValue.bind(this,"d"));
+eTransformInput.a.addEventListener("change",updateInputValue.bind(this,"e"));
+eTransformInput.a.addEventListener("change",updateInputValue.bind(this,"f"));
 
 function genFiboNum(t){
 	var fibo = [] ,n=1,a=1,b=1,c=0;
