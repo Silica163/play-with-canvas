@@ -4,20 +4,20 @@ const ctx3 = document.getElementById("c3").getContext("2d");
 const ctx4 = document.getElementById("c4").getContext("2d");
 var getById = document.getElementById;
 const eTransformInput = {
-	a:getById("#a"),
-	b:getById("#b"),
-	c:getById("#c"),
-	d:getById("#d"),
-	e:getById("#e"),
-	f:getById("#f")
+	a:getById("a"),
+	b:getById("b"),
+	c:getById("c"),
+	d:getById("d"),
+	e:getById("e"),
+	f:getById("f")
 }
 const eTransformValue = {
-	a:getById("#aval"),
-	b:getById("#bval"),
-	c:getById("#cval"),
-	d:getById("#dval"),
-	e:getById("#eval"),
-	f:getById("#fval")
+	a:getById("aval"),
+	b:getById("bval"),
+	c:getById("cval"),
+	d:getById("dval"),
+	e:getById("eval"),
+	f:getById("fval")
 }
 var transformValue = [0,0,0,0,0,0],varId = "abcdef";
 function updateInputValue(el = "a",e = new Event("input")){
