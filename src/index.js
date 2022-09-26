@@ -2,22 +2,21 @@ const ctx1 = document.getElementById("c1").getContext("2d");
 const ctx2 = document.getElementById("c2").getContext("2d");
 const ctx3 = document.getElementById("c3").getContext("2d");
 const ctx4 = document.getElementById("c4").getContext("2d");
-var getById = document.getElementById;
 const eTransformInput = {
-	a:(getById("a")),
-	b:(getById("b")),
-	c:(getById("c")),
-	d:(getById("d")),
-	e:(getById("e")),
-	f:(getById("f"))
+	a:document.getElementById("a"),
+	b:document.getElementById("b"),
+	c:document.getElementById("c"),
+	d:document.getElementById("d"),
+	e:document.getElementById("e"),
+	f:document.getElementById("f")
 }
 const eTransformValue = {
-	a:(getById("aval")),
-	b:(getById("bval")),
-	c:(getById("cval")),
-	d:(getById("dval")),
-	e:(getById("eval")),
-	f:(getById("fval"))
+	a:document.getElementById("aval"),
+	b:document.getElementById("bval"),
+	c:document.getElementById("cval"),
+	d:document.getElementById("dval"),
+	e:document.getElementById("eval"),
+	f:document.getElementById("fval")
 }
 var transformValue = [0,0,0,0,0,0],varId = "abcdef";
 function updateInputValue(el = "a",e = new Event("input")){
