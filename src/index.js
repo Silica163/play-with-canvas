@@ -35,7 +35,7 @@ function transform(ctx,trVal){
 }
 
 document.getElementById("clear").onclick = function(e){
-	ctx4.clearReact(0,0,700,700);
+	ctx4.clearRect(0,0,700,700);
 }
 
 eTransformInput.a.addEventListener("input",updateInputValue.bind(this,"a"));
