@@ -1,6 +1,53 @@
 const ctx1 = document.getElementById("c1").getContext("2d");
 const ctx2 = document.getElementById("c2").getContext("2d");
 const ctx3 = document.getElementById("c3").getContext("2d");
+const ctx4 = document.getElementById("c4").getContext("2d");
+const eTransformInput = {
+	a:document.getElementById("a"),
+	b:document.getElementById("b"),
+	c:document.getElementById("c"),
+	d:document.getElementById("d"),
+	e:document.getElementById("e"),
+	f:document.getElementById("f")
+}
+const eTransformValue = {
+	a:document.getElementById("aval"),
+	b:document.getElementById("bval"),
+	c:document.getElementById("cval"),
+	d:document.getElementById("dval"),
+	e:document.getElementById("eval"),
+	f:document.getElementById("fval")
+}
+
+var transformValue = [0,0,0,0,0,0],varId = "abcdef";
+function updateInputValue(el = "a",e = new Event("input")){
+	eTransformValue[el].innerHTML = e.target.value;
+	transformValue[varId.indexOf(el)] = e.target.value;
+	transform(ctx4,transformValue);
+}
+
+function transform(ctx,trVal){
+	ctx.save();
+	ctx.fillStyle = "#fff8"
+	ctx.fillRect(0,0,ctx.canvas.width,ctx.canvas.height);
+	ctx.fillStyle = "#000";
+	ctx.translate(ctx.canvas.width/2,ctx.canvas.height/2);
+	ctx.transform(trVal[0],trVal[1],trVal[2],trVal[3],trVal[4],trVal[5]);
+	drawGrid(ctx);
+	ctx.fillRect(0,0,10,10);
+	ctx.restore();
+}
+
+document.getElementById("clear").onclick = function(e){
+	ctx4.clearRect(0,0,700,700);
+}
+
+eTransformInput.a.addEventListener("input",updateInputValue.bind(this,"a"));
+eTransformInput.b.addEventListener("input",updateInputValue.bind(this,"b"));
+eTransformInput.c.addEventListener("input",updateInputValue.bind(this,"c"));
+eTransformInput.d.addEventListener("input",updateInputValue.bind(this,"d"));
+eTransformInput.e.addEventListener("input",updateInputValue.bind(this,"e"));
+eTransformInput.f.addEventListener("input",updateInputValue.bind(this,"f"));
 
 function genFiboNum(t){
 	var fibo = [] ,n=1,a=1,b=1,c=0;
@@ -52,7 +99,7 @@ function rotateRay(ctx){
 }
 
 window.requestAnimationFrame(drawFibo.bind(this,ctx1));;
-rotateRay(ctx1);
+//rotateRay(ctx1);
 
 window.requestAnimationFrame(radar.bind(this,ctx2));
 
@@ -70,4 +117,4 @@ function bwGrid(ctx){
 }
 
 window.requestAnimationFrame(bwGrid.bind(this,ctx3));
-window.requestAnimationFrame(bwGrid.bind(this,ctx1));
+//window.requestAnimationFrame(bwGrid.bind(this,ctx1));
