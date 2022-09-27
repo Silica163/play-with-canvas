@@ -13,50 +13,53 @@ function genFiboNum(t){
 	}
 	return fibo;
 }
-var fibo = genFiboNum(1000)
+var fibo = genFiboNum(500)
 
 function drawFibo(ctx){
-	for(let pos = 0,c = 0,an=0;pos <= ctx.canvas.width;pos+=3,c++,an+=0.01){
+	for(let pos = 0,c = 0,an=0;pos <= ctx.canvas.width;pos+=3,c++,an+=1){
 		ctx.lineWidth=1;
+		ctx.save();
 		ctx.beginPath();
-		ctx.moveTo(ctx.canvas.width/2,ctx.canvas.height/2);
-		ctx.lineTo(0,fibo[c]);
-		ctx.rotate(an);
-		if(an >= 6.3)an = 0;
+		ctx.translate(ctx.canvas.width/2,ctx.canvas.height/2)
+		ctx.rotate((Math.PI/180)*an);
+		ctx.moveTo(0,fibo[c-1]/500??0);
+		ctx.lineTo(0,fibo[c]/500);
+		if(an >= 360)an = 0;
 		ctx.stroke();
+		ctx.restore();
 	}
 }
 
-drawFibo(ctx1);
-
-function radar(ctx){
-	var w = ctx.canvas.width,h = ctx.canvas.height,int,an=0,posList = [];
+function rotateRay(ctx){
+	var deg = 0,x=ctx.canvas.width/2,y=ctx.canvas.height/2,int;
 	function drawRay(){
-		drawGrid(ctx,50,50);
+		ctx.lineWidth = 1;
+		ctx.strokeStyle = "#f00";
+
+		ctx.save();
+		ctx.translate(x,y)
+		ctx.rotate((Math.PI/180)*deg);
 		ctx.beginPath();
-		ctx.strokeStyle = "#0f0";
-		ctx.lineWidth = 2
-		ctx.moveTo(w/2,h/2);
-		ctx.lineTo((w/2)+(Math.cos(an)*(w/2)),(h/2)+(Math.sin(an)*(h/2)));
-		ctx.moveTo(w,h/2);
-		ctx.arc(w/2,h/2,h/2,0,Math.PI*2,true);
+		ctx.moveTo(0,0);
+		ctx.lineTo(deg,deg);
 		ctx.stroke();
-		ctx.fillStyle = "#0002";
-		ctx.fillRect(0,0,w,h);
-		if(an >= 360)clearInterval(int);
-		an+=0.01;
+		if(deg <= 360)deg++
+			else clearInterval(int);
+		ctx.restore();
+
 	}
-	int = setInterval(drawRay,0)
+	var int = setInterval(drawRay,10);
 }
+
+window.requestAnimationFrame(drawFibo.bind(this,ctx1));;
+rotateRay(ctx1);
 
 window.requestAnimationFrame(radar.bind(this,ctx2));
 
 function bwGrid(ctx){
-//	console.log(ctx.canvas);
 	let x =0 ,y= 0,int;
 	function drawRectX(){
 		ctx.beginPath();
-//		console.log(x,y);
 		if(x%2 == y%2)ctx.fillRect(x,y,1,1);
 		if(x <= ctx.canvas.width)x++
 			else if(y <= ctx.canvas.height)x=0,y++;
@@ -66,20 +69,5 @@ function bwGrid(ctx){
 	int = setInterval(drawRectX,0);
 }
 
-//window.requestAnimationFrame(bwGrid.bind(this,ctx3));
-
-
-function drawGrid(ctx,w=10,h=10){
-	ctx.beginPath();
-	ctx.strokeStyle = '#080';
-	ctx.lineWidth='1px';
-	for(let x = 0 ;x<= ctx.canvas.width;x+=w){
-		ctx.moveTo(0,x);
-		ctx.lineTo(ctx.canvas.width,x);
-	}
-	for(let y=0;y<=ctx.canvas.height;y+=h){
-		ctx.moveTo(y,0);
-		ctx.lineTo(y,ctx.canvas.height);
-	}
-	ctx.stroke();
-}
+window.requestAnimationFrame(bwGrid.bind(this,ctx3));
+window.requestAnimationFrame(bwGrid.bind(this,ctx1));
